@@ -1,43 +1,43 @@
 
-import { useState } from 'react'
-import './Registration.css'
+import { useState } from "react";
+import "./Registration.css";
 
 function Registration({ onBack }) {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [ageGroup, setAgeGroup] = useState('')
-  const [availability, setAvailability] = useState('')
-  const [interests, setInterests] = useState([])
-  const [submitted, setSubmitted] = useState(false)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [ageGroup, setAgeGroup] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [interests, setInterests] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
   const interestOptions = [
-    'Sports',
-    'Music',
-    'Workshops',
-    'Food',
-    'Hangouts',
-    'Adventure',
-    'Technology',
-    'Art'
-  ]
+    "Sports",
+    "Music",
+    "Workshops",
+    "Food",
+    "Hangouts",
+    "Adventure",
+    "Technology",
+    "Art",
+  ];
 
   function handleInterest(interest) {
     if (interests.includes(interest)) {
-      setInterests(interests.filter(item => item !== interest))
+      setInterests(interests.filter((item) => item !== interest));
     } else {
-      setInterests([...interests, interest])
+      setInterests([...interests, interest]);
     }
   }
 
   function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     if (interests.length === 0) {
-      alert('Please select at least one interest.')
-      return
+      alert("Please select at least one interest.");
+      return;
     }
 
-    setSubmitted(true)
+    setSubmitted(true);
   }
 
   if (submitted) {
@@ -45,18 +45,25 @@ function Registration({ onBack }) {
       <div className="registration-overlay">
         <div className="registration-card success-card">
           <div className="success-icon">✓</div>
+
           <h2>You're all set, {name}!</h2>
+
           <p>Your preferences have been collected successfully.</p>
+
           <p className="success-note">
             Next, we'll use these interests to find activities
             that match you.
           </p>
-          <button className="registration-submit" onClick={onBack}>
+
+          <button
+            className="registration-submit"
+            onClick={onBack}
+          >
             Back to homepage
           </button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -67,7 +74,9 @@ function Registration({ onBack }) {
         </button>
 
         <p className="eyebrow">LET'S GET TO KNOW YOU</p>
+
         <h2>Create your profile</h2>
+
         <p className="registration-description">
           Tell us a little about yourself so we can
           recommend activities you'll enjoy.
@@ -79,7 +88,7 @@ function Registration({ onBack }) {
             type="text"
             placeholder="Enter your name"
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={(event) => setName(event.target.value)}
             required
           />
 
@@ -88,14 +97,14 @@ function Registration({ onBack }) {
             type="email"
             placeholder="Enter your email"
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
 
           <label>Age group</label>
           <select
             value={ageGroup}
-            onChange={event => setAgeGroup(event.target.value)}
+            onChange={(event) => setAgeGroup(event.target.value)}
             required
           >
             <option value="">Select your age group</option>
@@ -109,16 +118,16 @@ function Registration({ onBack }) {
           <p className="field-hint">Select all that apply.</p>
 
           <div className="interest-options">
-            {interestOptions.map(interest => (
+            {interestOptions.map((interest) => (
               <button
                 type="button"
                 key={interest}
                 className={`interest-option ${
-                  interests.includes(interest) ? 'selected' : ''
+                  interests.includes(interest) ? "selected" : ""
                 }`}
                 onClick={() => handleInterest(interest)}
               >
-                {interests.includes(interest) ? '✓ ' : '+ '}
+                {interests.includes(interest) ? "✓ " : "+ "}
                 {interest}
               </button>
             ))}
@@ -127,7 +136,7 @@ function Registration({ onBack }) {
           <label>When are you usually available?</label>
           <select
             value={availability}
-            onChange={event => setAvailability(event.target.value)}
+            onChange={(event) => setAvailability(event.target.value)}
             required
           >
             <option value="">Select availability</option>
@@ -142,7 +151,7 @@ function Registration({ onBack }) {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Registration
+export default Registration;
